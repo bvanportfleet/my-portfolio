@@ -7,6 +7,37 @@ const ContactForm = () => {
     setIsFormOpen(!isFormOpen);
   };
 
+  const formatPhoneNumber = (value) => {
+    // Remove all non-digit characters
+    const phoneNumber = value.replace(/\D/g, "");
+
+    // Format the phone number
+    let formattedNumber = "";
+    for (let i = 0; i < phoneNumber.length; i++) {
+      if (i === 0) {
+        formattedNumber = "(" + phoneNumber[i];
+      } else if (i === 2) {
+        formattedNumber += phoneNumber[i] + ") ";
+      } else if (i === 5) {
+        formattedNumber += phoneNumber[i] + "-";
+      } else {
+        formattedNumber += phoneNumber[i];
+      }
+    }
+    return formattedNumber;
+  };
+
+  const handlePhoneChange = (e) => {
+    let { value } = e.target;
+    // Remove non-numeric characters
+    value = value.replace(/\D/g, "");
+    // Limit to 10 characters
+    if (value.length > 10) {
+      value = value.slice(0, 10);
+    }
+    e.target.value = formatPhoneNumber(value);
+  };
+
   // Dynamic styling for the form to enable smooth transitioning
   const formStyle = {
     right: isFormOpen ? "0" : "-330px", // Adjust as needed
@@ -15,7 +46,7 @@ const ContactForm = () => {
   };
   const screenDimStyle = {
     display: isFormOpen ? "block" : "none",
-  }
+  };
 
   return (
     <div>
@@ -64,12 +95,13 @@ const ContactForm = () => {
               type="tel"
               id="phone"
               name="phone"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              maxLength="14"
               required
               aria-required="true"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              onChange={handlePhoneChange}
             />
-            <small>( Format: 123-456-7890 )</small>
+            <small>( Format: (000) 000-0000 )</small>
           </div>
           <div>
             <label
