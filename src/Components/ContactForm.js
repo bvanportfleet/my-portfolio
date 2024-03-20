@@ -38,6 +38,37 @@ const ContactForm = () => {
     e.target.value = formatPhoneNumber(value);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const formObject = {};
+    formData.forEach((value, key) => {
+      formObject[key] = value;
+    });
+
+    // Make a POST request to the server
+    fetch("https://localhost:3001/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formObject),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("Email sent successfully!");
+          // Handle success
+        } else {
+          console.error("Failed to send email.");
+          // Handle error
+        }
+      })
+      .catch((error) => {
+        console.error("Error sending email:", error);
+        // Handle error
+      });
+  };
+
   // Dynamic styling for the form to enable smooth transitioning
   const formStyle = {
     right: isFormOpen ? "0" : "-330px", // Adjust as needed
@@ -67,7 +98,12 @@ const ContactForm = () => {
         </div>
 
         {/* Form fields */}
-        <form action="/submitForm" method="POST" className="space-y-4">
+        <form
+          onSubmit={handleSubmit}
+          action="/submitForm"
+          method="POST"
+          className="space-y-4"
+        >
           <div>
             <label
               htmlFor="name"
@@ -101,7 +137,7 @@ const ContactForm = () => {
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
               onChange={handlePhoneChange}
             />
-            <small>( Format: (000) 000-0000 )</small>
+            <small>( Format: (123) 456-7890 )</small>
           </div>
           <div>
             <label
@@ -151,7 +187,7 @@ const ContactForm = () => {
           </div>
           <button
             type="submit"
-            className="py-2 px-4 bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
+            className="btn py-2 px-4 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
           >
             Submit
           </button>

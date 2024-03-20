@@ -27,7 +27,8 @@ h1 {
   margin-bottom: .2em;
   font-family: 'Trebuchet MS', sans-serif;
   font-size: 2.2rem;
-  color: var(--dk-blue)
+  color: var(--dk-blue);
+  /* letter-spacing: .05rem; */
 }
 
 h2 {
@@ -57,7 +58,7 @@ h3 {
   display: flex-row;
   align-items: center;
   margin-top: auto;
-  text-align: left;
+padding-right: 1rem;
   margin: 0px;
   color: rgb(46, 46, 47);
 }
@@ -157,7 +158,7 @@ input, textarea, select {
 }
 .btn{
   width: 100%;
-  background-color: #1167b2;
+  background-color: var(--dk-blue);
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -195,7 +196,7 @@ img {
 .side-name {
   color: rgb(22, 100, 139);
   position: fixed;
-  left: 5rem;
+  left: 5.3rem;
   top: 50vh;
   /* Adjust font size relative to viewport height; tweak this based on your text length */
   font-size: 26vh;
@@ -203,6 +204,7 @@ img {
   font-weight: 900;
   transform: translate(-50%, -50%) rotate(-90deg);
   white-space: nowrap;
+  letter-spacing: .8rem;
   /* Ensure the text stays on one line */
 }
 .profile-image {
@@ -222,6 +224,7 @@ img {
     
     .side-name {
       margin-left: 0rem;
+      right:3rem;
     }
   .profile-image {
     width: 225px;
@@ -241,7 +244,7 @@ img {
       text-align: left;
     }
 }
-@media screen and (max-width: 667px) {
+@media screen and (max-width: 767px) {
 
     .side-bar {
       align-items: start;

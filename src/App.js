@@ -19,7 +19,6 @@ import NotFoundPage from "./Pages/NotFoundPage";
 function App() {
   return (
     <div className="App flex min-h-screen">
-      
       <img
         className="profile-image absolute  full-rounded"
         src="../images/brian.jpg"
