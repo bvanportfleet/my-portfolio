@@ -21,7 +21,7 @@ function App() {
     <div className="App flex min-h-screen">
       <img
         className="profile-image absolute  full-rounded"
-        src="../images/brian.jpg"
+        src="/images/brian.jpg"
         alt="Brian"
         style={{ zIndex: 20 }}
       />
